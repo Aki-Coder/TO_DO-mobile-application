@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">TODO application</string>
+    <string name="register">Register</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="enter_passwordR">Enter password</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="todoR">TODO</string>
+    <string name="todo">TODO</string>
+    <string name="already_have_an_account_sign_in_here">Already have an account? Sign in here</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter password</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

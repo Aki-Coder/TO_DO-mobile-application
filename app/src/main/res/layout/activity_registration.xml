@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#37556d"
-    tools:context=".LoginActivity">
+    tools:context=".RegistrationActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/loginToolbar"
+        android:id="@+id/RegistrationToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#293f51"
@@ -27,8 +27,10 @@
         android:layout_gravity="center"
         android:contentDescription="@string/todo"></ImageView>
 
+
+
     <EditText
-        android:id="@+id/loginEmail"
+        android:id="@+id/RegistrationEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -36,17 +38,18 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/inputs"
-        android:hint="Enter email"
+        android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textColor="#7fb3cc"
         android:drawableStart="@drawable/ic_email_black_24dp"
         android:drawablePadding="10dp"
         android:textColorHint="#c8a084"
-        android:autofillHints=""></EditText>
+        android:autofillHints=""
+        android:importantForAutofill="no"></EditText>
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/RegistrationPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -58,26 +61,26 @@
         android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="10dp"
         android:textColorHint="#c8a084"
-        android:importantForAutofill="no"></EditText>
+        android:autofillHints=""></EditText>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/registrationButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:background="@drawable/button_lr"></Button>
 
     <TextView
-        android:id="@+id/loginPageQuestion"
+        android:id="@+id/RegistrationPageQuestion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Register"
-        android:textColor="#7fb3cc"
+        android:layout_height="32dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"></TextView>
+        android:text="Already have an account login here"
+        android:textColor="#7fb3cc"></TextView>
 
 
 </LinearLayout>

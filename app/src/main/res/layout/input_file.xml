@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#37556d"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Create new task"
+        android:gravity="center"
+        android:background="#c8a084"
+        android:padding="10dp"
+        android:textColor="#102332"
+        android:textStyle="bold"
+        android:textSize="18sp"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add title"
+                android:textColor="#adadad"
+                android:textSize="16sp"
+                android:layout_margin="10dp"></TextView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <EditText
+                android:id="@+id/task"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:hint="What you wanna do?"
+                android:textAlignment="center"
+                android:textColorHint="#b5b5b5"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/background_change_input"
+                android:layout_margin="10dp"></EditText>
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textColor="#adadad"
+                android:textSize="16sp"
+                android:layout_margin="10dp"></TextView>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:background="@drawable/background_change_input"
+                android:hint="How do you do that?"
+                android:layout_height="150dp"
+                android:inputType="text|textMultiLine"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="#b5b5b5"
+                android:maxLength="100"
+                android:layout_margin="10dp"></EditText>
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Input location"
+                android:textColor="#adadad"
+                android:textSize="16sp"
+                android:layout_margin="10dp"></TextView>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <EditText
+                android:id="@+id/placeMap"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/background_change_input"
+                android:hint="Input place"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="#b5b5b5"
+                android:layout_margin="10dp"></EditText>
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/showMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="See location"
+                android:textColor="#adadad"
+                android:textSize="16sp"
+                android:layout_margin="10dp"></TextView>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <Button
+                android:id="@+id/seeMap"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/background_change_input"
+                android:hint="Show"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="#b5b5b5"
+                android:layout_margin="10dp"></Button>
+
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+            
+            <Button
+                android:id="@+id/cancleButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:background="@drawable/button_cancle"
+                android:layout_margin="10dp"
+                android:textColor="#000"
+                android:textSize="18sp"></Button>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create now"
+                android:textAllCaps="false"
+                android:background="@drawable/button_save"
+                android:layout_margin="10dp"
+                android:textColor="#fff"
+
+                android:textSize="18sp"></Button>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
