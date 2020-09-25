@@ -51,12 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         button = findViewById(R.id.loginButton);
         loginQn = findViewById(R.id.loginPageQuestion);
 
-//        if(mAuth != null){
-//            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-//            startActivity(intent);
-//
-//        }
-
         loginQn.setOnClickListener(new View.OnClickListener(){
 
             @Override

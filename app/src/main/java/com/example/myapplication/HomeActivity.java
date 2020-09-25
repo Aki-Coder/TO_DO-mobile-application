@@ -8,14 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 
-import android.location.Address;
-import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 
@@ -32,27 +27,23 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.io.IOException;
 import java.text.DateFormat;
 
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity  {
-
-    private static int RESULT_CODE_LOCATION = 101;
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
@@ -62,6 +53,8 @@ public class HomeActivity extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private String onlineUserID;
+
+    Button cancle,save;
 
     private Button seeMap;
     private EditText mapLocation;
@@ -73,9 +66,7 @@ public class HomeActivity extends AppCompatActivity  {
     private String desc;
     private String loc;
 
-    TextView pickDate;
-    EditText edDate;
-    DatePickerDialog.OnDateSetListener setListener;
+
 
 
     @Override
@@ -99,7 +90,6 @@ public class HomeActivity extends AppCompatActivity  {
         loader = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
-        //zbog ovog nece home , cuur use je null
         mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
         reference = FirebaseDatabase.getInstance().getReference().child("task").child(onlineUserID);
@@ -113,23 +103,26 @@ public class HomeActivity extends AppCompatActivity  {
 
     }
 
-    private void openMap(View action){
 
-        if(!mapLocation.getText().toString().equals("")){
-            String location = mapLocation.getText().toString();
 
-            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=" + location));
-            intent.setPackage("com.google.android.apps.maps");
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Please enter map location", Toast.LENGTH_SHORT).show();
-        }
-
-    }
+//    private void openMap(View action){
+//
+//        if(!mapLocation.getText().toString().equals("")){
+//            String location = mapLocation.getText().toString();
+//
+//            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=" + location));
+//            intent.setPackage("com.google.android.apps.maps");
+//            startActivity(intent);
+//        } else {
+//            Toast.makeText(this, "Please enter map location", Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
 
 
     private void addTask() {
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
+        //za instanciranje izgleda xml datoteke
         LayoutInflater inflater = LayoutInflater.from(this);
 
         View myView = inflater.inflate(R.layout.input_file, null);
@@ -140,13 +133,23 @@ public class HomeActivity extends AppCompatActivity  {
 
         final EditText task = myView.findViewById(R.id.task);
         final EditText description = myView.findViewById(R.id.description);
-        Button cancle = myView.findViewById(R.id.cancleButton);
-        Button save = myView.findViewById(R.id.saveButton);
+        cancle = myView.findViewById(R.id.cancleButton);
+        save = myView.findViewById(R.id.saveButton);
 
-        mapLocation = myView.findViewById(R.id.placeMap);
+        Button uploadPic = myView.findViewById(R.id.uploadPicture);
+        uploadPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this, UploadPictureActivity.class);
+                startActivity(i);
+            }
+        });
 
-        seeMap = myView.findViewById(R.id.seeMap);
-        seeMap.setOnClickListener(this::openMap);
+        //mapLocation = myView.findViewById(R.id.placeMap);
+
+        //seeMap = myView.findViewById(R.id.seeMap);
+        //seeMap.setOnClickListener(this::openMap);
+
 
         cancle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,8 +165,6 @@ public class HomeActivity extends AppCompatActivity  {
                 String mDescription = description.getText().toString().trim();
                 String id = reference.push().getKey();
                 String date = SimpleDateFormat.getDateInstance().format(new Date());
-                String location = mapLocation.getText().toString();
-
                 if(TextUtils.isEmpty(mTask)){
                     task.setError("Task required");
                     return;
@@ -176,7 +177,7 @@ public class HomeActivity extends AppCompatActivity  {
                     loader.setCanceledOnTouchOutside(false);
                     loader.show();
 
-                    Model model = new Model(mTask,mDescription,id,date, location);
+                    Model model = new Model(mTask,mDescription,id,date);
                     reference.child(id).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -201,6 +202,8 @@ public class HomeActivity extends AppCompatActivity  {
         dialog.show();
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -208,13 +211,13 @@ public class HomeActivity extends AppCompatActivity  {
                 .setQuery(reference,Model.class)
                 .build();
 
+        //veze upit za reciycle view
         FirebaseRecyclerAdapter<Model, MyViewHolder> adapter = new FirebaseRecyclerAdapter<Model, MyViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, final int position, @NonNull final Model model) {
                 holder.setDate(model.getDate());
                 holder.setTask(model.getTask());
                 holder.setDescription(model.getDescription());
-                holder.setLocation(model.getLocation());
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -222,7 +225,6 @@ public class HomeActivity extends AppCompatActivity  {
                         key = getRef(position).getKey();
                         task = model.getTask();
                         desc = model.getDescription();
-                        loc = model.getLocation();
 
                         updateTask();
                     }
@@ -232,6 +234,8 @@ public class HomeActivity extends AppCompatActivity  {
             @NonNull
             @Override
             public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                //instanciranje xml datoteke
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.retrived_layout,parent,false);
                 return new MyViewHolder(view);
             }
@@ -241,6 +245,7 @@ public class HomeActivity extends AppCompatActivity  {
         adapter.startListening();
     }
 
+                                                    //opisuje prikaz stavke i mp o njenom mestu u rv
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         View mView;
@@ -266,12 +271,8 @@ public class HomeActivity extends AppCompatActivity  {
             dateTextView.setText(date);
         }
 
-        public void setLocation(String loc){
-            TextView locTextView = mView.findViewById(R.id.location);
-            locTextView.setText(loc);
-        }
 
-    }
+}
 
     private void updateTask(){
         AlertDialog.Builder myDialog = new AlertDialog.Builder(this);
@@ -285,16 +286,12 @@ public class HomeActivity extends AppCompatActivity  {
 
         final EditText mTask = view.findViewById(R.id.mEditTextTask);
         final EditText mDesc = view.findViewById(R.id.mEditTextDescription);
-        final EditText mLoc = view.findViewById(R.id.mEditTextLocation);
 
         mTask.setText(task);
         mTask.setSelection(task.length());
 
         mDesc.setText(desc);
         mDesc.setSelection(desc.length());
-
-        mLoc.setText(loc);
-        mLoc.setSelection(loc.length());
 
 
         //2 button-a
@@ -308,14 +305,13 @@ public class HomeActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 task = mTask.getText().toString().trim();
                 desc = mDesc.getText().toString().trim();
-                loc = mLoc.getText().toString().trim();
 
                 String date = DateFormat.getDateInstance().format(new Date());
 
                 //insert date to database
                 //key za update posebnog task-a
 
-                Model model = new Model(task, desc, key , date,loc);
+                Model model = new Model(task, desc, key , date);
                 reference.child(key).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

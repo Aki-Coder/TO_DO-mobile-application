@@ -82,12 +82,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(RegistrationActivity.this, "Fileds are empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "Filds are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                    loader.setMessage("Registration in progress");
-//                    loader.setCanceledOnTouchOutside(false);
-//                    loader.show();
+                    loader.setMessage("Registration in progress");
+                    loader.setCanceledOnTouchOutside(false);
+                    loader.show();
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

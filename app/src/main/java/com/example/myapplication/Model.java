@@ -2,9 +2,9 @@ package com.example.myapplication;
 
 public class Model {
 
-    private String task, description, id, date, location;
+    private String task, description, id, date;
 
-    public Model () {
+    public Model(String mTask, String mDescription, String id, String date) {
 
     }
 
@@ -13,7 +13,6 @@ public class Model {
         this.description = description;
         this.id = id;
         this.date = date;
-        this.location = location;
     }
 
     public String getTask() {
@@ -48,11 +47,4 @@ public class Model {
         this.date = date;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location   = location;
-    }
 }

@@ -109,51 +109,6 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-
-            <TextView
-                android:id="@+id/textDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Input location"
-                android:textColor="#adadad"
-                android:textSize="16sp"
-                android:layout_margin="10dp"></TextView>
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5">
-
-            <EditText
-                android:id="@+id/placeMap"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/background_change_input"
-                android:hint="Input place"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="#b5b5b5"
-                android:layout_margin="10dp"></EditText>
-
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -167,14 +122,13 @@
             android:layout_weight="2">
 
             <TextView
-                android:id="@+id/showMap"
+                android:id="@+id/picture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="See location"
+                android:text="Picture"
                 android:textColor="#adadad"
                 android:textSize="16sp"
                 android:layout_margin="10dp"></TextView>
-
 
 
         </RelativeLayout>
@@ -185,16 +139,15 @@
             android:layout_weight="5">
 
             <Button
-                android:id="@+id/seeMap"
+                android:id="@+id/uploadPicture"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/background_change_input"
-                android:hint="Show"
+                android:hint="Take picture for task"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="#b5b5b5"
                 android:layout_margin="10dp"></Button>
-
 
 
         </RelativeLayout>

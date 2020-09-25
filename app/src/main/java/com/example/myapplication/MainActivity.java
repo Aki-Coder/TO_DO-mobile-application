@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         //jump next acitivity
 
+        //planiranje poruka
+        //bolji od niti
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

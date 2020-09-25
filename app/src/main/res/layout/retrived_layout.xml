@@ -69,18 +69,6 @@
                 android:padding="5dp"
                 android:maxLines="3"></TextView>
 
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textColor="#6D95A9"
-                android:text="Location"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:padding="5dp"
-                android:maxLines="3"></TextView>
-
 
 
         </LinearLayout>

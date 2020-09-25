@@ -100,45 +100,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        >
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:textColor="#adadad"
-                android:textSize="18sp"
-                android:layout_margin="10dp"></TextView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="4">
-
-            <EditText
-                android:id="@+id/mEditTextLocation"
-                android:inputType="text"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:hint="Change location"
-                android:textAlignment="center"
-                android:textColorHint="#b5b5b5"
-                android:textColor="@color/colorPrimary"
-                android:background="@drawable/background_change_input"
-                android:layout_margin="10dp"></EditText>
-        </RelativeLayout>
-
-    </LinearLayout>
 
 
     <LinearLayout
