@@ -181,6 +181,7 @@
                 android:textAllCaps="false"
                 android:background="@drawable/button_save"
                 android:textSize="18sp"
+                android:textColor="#fff"
                 android:layout_margin="10dp"
                 ></Button>
 

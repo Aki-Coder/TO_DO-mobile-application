@@ -5,27 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#37556d"
-    tools:context=".LoginActivity">
+    android:background="#37556d">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/loginToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#293f51"
+        android:layout_height="164dp"
+        android:background="@drawable/ic_wavenew"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        ></androidx.appcompat.widget.Toolbar>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></androidx.appcompat.widget.Toolbar>
 
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/uuseer"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:contentDescription="@string/todo"></ImageView>
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/uuseer"></ImageView>
 
     <EditText
         android:id="@+id/loginEmail"
@@ -36,14 +34,15 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/inputs"
-        android:hint="Enter email"
+        android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textColor="#7fb3cc"
         android:drawableStart="@drawable/ic_email_black_24dp"
         android:drawablePadding="10dp"
         android:textColorHint="#c8a084"
-        android:autofillHints=""></EditText>
+        android:autofillHints=""
+        android:importantForAutofill="no"></EditText>
 
     <EditText
         android:id="@+id/loginPassword"
@@ -58,14 +57,14 @@
         android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="10dp"
         android:textColorHint="#c8a084"
-        android:importantForAutofill="no"></EditText>
+        android:autofillHints=""></EditText>
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/login"
+        android:text="Login"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:background="@drawable/button_lr"></Button>
@@ -73,11 +72,11 @@
     <TextView
         android:id="@+id/loginPageQuestion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Don't have an account? Register"
-        android:textColor="#7fb3cc"
+        android:layout_height="32dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"></TextView>
+        android:text="Don't have an account? Register"
+        android:textColor="#7fb3cc"></TextView>
 
 
 </LinearLayout>

@@ -5,29 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#37556d"
-    tools:context=".RegistrationActivity">
+    android:background="#37556d">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/RegistrationToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#293f51"
+        android:layout_height="164dp"
+        android:background="@drawable/ic_wavenew"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        ></androidx.appcompat.widget.Toolbar>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></androidx.appcompat.widget.Toolbar>
 
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/uuseer"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:contentDescription="@string/todo"></ImageView>
-
-
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/uuseer"></ImageView>
 
     <EditText
         android:id="@+id/RegistrationEmail"
@@ -35,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/inputs"
         android:hint="@string/enter_email"
         android:inputType="textEmailAddress"
@@ -52,7 +48,7 @@
         android:id="@+id/RegistrationPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:background="@drawable/inputs"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
