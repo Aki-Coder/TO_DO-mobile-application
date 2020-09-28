@@ -42,52 +42,44 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="255dp"
-            android:orientation="vertical">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/taskT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:maxLines="1"
-                android:padding="5dp"
                 android:text="Task"
-                android:textColor="#102332"
                 android:textSize="15sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:maxLines="1"
+                android:textColor="#102332"></TextView>
 
             <TextView
                 android:id="@+id/descriptionT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:maxLines="3"
-                android:padding="5dp"
-                android:text="Description"
                 android:textColor="#947966"
+                android:text="Description"
                 android:textSize="15sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:textStyle="bold"
                 android:padding="5dp"
-                android:text="Priority"
-                android:textSize="15sp"
-                android:textStyle="bold"></TextView>
+                android:maxLines="3"></TextView>
 
             <RatingBar
                 android:id="@+id/rating_bar"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:layout_margin="10dp"
                 android:numStars="5"
-                android:padding="3dp"
                 android:stepSize="0.5">
 
             </RatingBar>
+
 
 
         </LinearLayout>

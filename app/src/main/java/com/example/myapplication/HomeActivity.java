@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,18 +57,17 @@ public class HomeActivity extends AppCompatActivity  {
 
     Button cancle,save;
 
-    private Button seeMap;
-    private EditText mapLocation;
 
     private ProgressDialog loader;
 
     private String key = "";
     private String task;
     private String desc;
-    private String loc;
 
+    private float rating;
 
-
+    RatingBar ratingBar;
+    private Button btSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,7 @@ public class HomeActivity extends AppCompatActivity  {
 
         loader = new ProgressDialog(this);
 
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         onlineUserID = mUser.getUid();
@@ -96,28 +97,16 @@ public class HomeActivity extends AppCompatActivity  {
 
 
         floatingActionButton = findViewById(R.id.fab);
-        floatingActionButton.setOnClickListener(action -> {
-            addTask();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addTask();
+            }
         });
 
 
     }
 
-
-
-//    private void openMap(View action){
-//
-//        if(!mapLocation.getText().toString().equals("")){
-//            String location = mapLocation.getText().toString();
-//
-//            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=" + location));
-//            intent.setPackage("com.google.android.apps.maps");
-//            startActivity(intent);
-//        } else {
-//            Toast.makeText(this, "Please enter map location", Toast.LENGTH_SHORT).show();
-//        }
-//
-//    }
 
 
     private void addTask() {
@@ -136,6 +125,12 @@ public class HomeActivity extends AppCompatActivity  {
         cancle = myView.findViewById(R.id.cancleButton);
         save = myView.findViewById(R.id.saveButton);
 
+        ratingBar = myView.findViewById(R.id.rating_bar);
+
+        ratingBar.setOnRatingBarChangeListener((ratingBar, rating, fromUser) -> {
+            Toast.makeText(this, rating + " vrednost", Toast.LENGTH_LONG).show();
+        });
+
         Button uploadPic = myView.findViewById(R.id.uploadPicture);
         uploadPic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,13 +139,6 @@ public class HomeActivity extends AppCompatActivity  {
                 startActivity(i);
             }
         });
-
-        //mapLocation = myView.findViewById(R.id.placeMap);
-
-        //seeMap = myView.findViewById(R.id.seeMap);
-        //seeMap.setOnClickListener(this::openMap);
-
-
         cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,6 +153,8 @@ public class HomeActivity extends AppCompatActivity  {
                 String mDescription = description.getText().toString().trim();
                 String id = reference.push().getKey();
                 String date = SimpleDateFormat.getDateInstance().format(new Date());
+                float rating = ratingBar.getRating();
+
                 if(TextUtils.isEmpty(mTask)){
                     task.setError("Task required");
                     return;
@@ -177,11 +167,12 @@ public class HomeActivity extends AppCompatActivity  {
                     loader.setCanceledOnTouchOutside(false);
                     loader.show();
 
-                    Model model = new Model(mTask,mDescription,id,date);
+                    Model model = new Model(mTask,mDescription,id,date, rating);
                     reference.child(id).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                System.out.println("Task je uspesan");
                                 Toast.makeText(HomeActivity.this, "Task has been inserted successfully", Toast.LENGTH_SHORT).show();
                                 loader.dismiss();
                             } else {
@@ -218,6 +209,7 @@ public class HomeActivity extends AppCompatActivity  {
                 holder.setDate(model.getDate());
                 holder.setTask(model.getTask());
                 holder.setDescription(model.getDescription());
+                holder.setRating(model.getRating());
 
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -225,7 +217,7 @@ public class HomeActivity extends AppCompatActivity  {
                         key = getRef(position).getKey();
                         task = model.getTask();
                         desc = model.getDescription();
-
+                        rating = model.getRating();
                         updateTask();
                     }
                 });
@@ -271,6 +263,12 @@ public class HomeActivity extends AppCompatActivity  {
             dateTextView.setText(date);
         }
 
+        public void setRating(float rating){
+            RatingBar rb = mView.findViewById(R.id.rating_bar);
+            rb.setEnabled(false);
+            rb.setRating(rating);
+        }
+
 
 }
 
@@ -286,12 +284,16 @@ public class HomeActivity extends AppCompatActivity  {
 
         final EditText mTask = view.findViewById(R.id.mEditTextTask);
         final EditText mDesc = view.findViewById(R.id.mEditTextDescription);
+        RatingBar rB = view.findViewById(R.id.rating_bar);
 
         mTask.setText(task);
         mTask.setSelection(task.length());
 
         mDesc.setText(desc);
         mDesc.setSelection(desc.length());
+
+        rB.setRating(rating);
+        rB.setSelected(true);
 
 
         //2 button-a
@@ -305,13 +307,13 @@ public class HomeActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 task = mTask.getText().toString().trim();
                 desc = mDesc.getText().toString().trim();
-
+                rating = ratingBar.getRating();
                 String date = DateFormat.getDateInstance().format(new Date());
 
                 //insert date to database
                 //key za update posebnog task-a
 
-                Model model = new Model(task, desc, key , date);
+                Model model = new Model(task, desc, key , date, rating);
                 reference.child(key).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -368,6 +370,12 @@ public class HomeActivity extends AppCompatActivity  {
                 Intent intent  = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
+                break;
+            case R.id.maps:
+                Intent i = new Intent(HomeActivity.this, CurrentLocation.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
                 finish();
         }
         return super.onOptionsItemSelected(item);

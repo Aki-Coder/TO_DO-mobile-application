@@ -3,16 +3,18 @@ package com.example.myapplication;
 public class Model {
 
     private String task, description, id, date;
+    float rating;
 
-    public Model(String mTask, String mDescription, String id, String date) {
+    public Model () {
 
     }
 
-    public Model(String task, String description, String id, String date, String location) {
+    public Model(String task, String description, String id, String date, float rating) {
         this.task = task;
         this.description = description;
         this.id = id;
         this.date = date;
+        this.rating = rating;
     }
 
     public String getTask() {
@@ -45,6 +47,10 @@ public class Model {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public float getRating() {
+        return rating;
     }
 
 }

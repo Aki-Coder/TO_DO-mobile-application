@@ -185,7 +185,8 @@ public class UploadPictureActivity extends AppCompatActivity {
         if(requestCode == IMG_REQUEST_ID && resultCode == RESULT_OK && data != null && data.getData() != null){
             //selected image
             imageUri = data.getData();
-            imgView.setImageURI(imageUri);
+        }else if(resultCode == RESULT_OK)
+                imgView.setImageURI(imageUri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri );
                 imgView.setImageBitmap(bitmap);
@@ -199,4 +200,3 @@ public class UploadPictureActivity extends AppCompatActivity {
 
 
 
-}
